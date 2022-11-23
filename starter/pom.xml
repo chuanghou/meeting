@@ -65,6 +65,10 @@
                     <weaveDependencies>
                         <dependency>
                             <groupId>com.stellariver.meeting</groupId>
+                            <artifactId>adapter</artifactId>
+                        </dependency>
+                        <dependency>
+                            <groupId>com.stellariver.meeting</groupId>
                             <artifactId>application</artifactId>
                         </dependency>
                     </weaveDependencies>
