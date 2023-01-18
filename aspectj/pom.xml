@@ -34,6 +34,54 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>aspectj-maven-plugin</artifactId>
+                <configuration>
+                    <complianceLevel>1.8</complianceLevel>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <showWeaveInfo>true</showWeaveInfo>
+                    <Xlint>warning</Xlint>
+                    <verbose>false</verbose>
+                    <sources>
+                        <source>
+                            <basedir>src/main/java</basedir>
+                            <includes>
+                                <include>**/*.java</include>
+                            </includes>
+                        </source>
+                    </sources>
+                    <XaddSerialVersionUID>true</XaddSerialVersionUID>
+                    <showWeaveInfo>true</showWeaveInfo>
+                    <weaveDependencies>
+                        <dependency>
+                            <groupId>com.stellariver.meeting</groupId>
+                            <artifactId>adapter</artifactId>
+                        </dependency>
+                        <dependency>
+                            <groupId>com.stellariver.meeting</groupId>
+                            <artifactId>application</artifactId>
+                        </dependency>
+                    </weaveDependencies>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjrt</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjtools</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>

@@ -52,24 +52,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>aspectj-maven-plugin</artifactId>
-                <configuration>
-                    <aspectLibraries>
-                        <dependency>
-                            <groupId>com.stellariver.meeting</groupId>
-                            <artifactId>aspectj</artifactId>
-                        </dependency>
-                    </aspectLibraries>
-                    <weaveDependencies>
-                        <dependency>
-                            <groupId>com.stellariver.meeting</groupId>
-                            <artifactId>application</artifactId>
-                        </dependency>
-                    </weaveDependencies>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 </project>

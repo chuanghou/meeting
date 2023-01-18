@@ -5,14 +5,14 @@ import com.stellariver.milky.domain.support.dependency.ConcurrentOperate;
 
 public class ConcurrentOperateImpl extends ConcurrentOperate {
 
+
     @Override
     protected boolean tryLock(UK nameSpace, String lockKey, String encryptionKey, int milsToExpire) {
         return false;
     }
 
     @Override
-    protected boolean unlock(UK nameSpace, String lockKey, String encryptionKey) {
+    protected boolean unLockFallbackable(UK nameSpace, String lockKey, String encryptionKey) {
         return false;
     }
-
 }

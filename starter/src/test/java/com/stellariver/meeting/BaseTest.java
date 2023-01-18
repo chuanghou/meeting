@@ -1,5 +1,6 @@
 package com.stellariver.meeting;
 
+import com.stellariver.meeting.adapter.controller.UserController;
 import com.stellariver.meeting.application.UserAbility;
 import lombok.CustomLog;
 import org.junit.jupiter.api.Test;
@@ -13,11 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class BaseTest{
 
     @Autowired
-    UserAbility userAbility;
+    UserController userController;
 
     @Test
     public void contextTest() {
-        userAbility.registerUser();
+        userController.register("jaa");
     }
 
 }
