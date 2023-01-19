@@ -9,12 +9,12 @@ import org.aspectj.lang.annotation.Pointcut;
 @Aspect
 public class MyAspect {
 
-    @Pointcut("execution(* com.stellariver.meeting.application.UserAbility.registerUser())")
+    @Pointcut("execution(* com.stellariver.meeting.application.UserAbility.internalInvoke())")
     private void pointCut() {}
 
     @Around("pointCut()")
     public Object printLog(ProceedingJoinPoint joinPoint) throws Throwable {
-        System.out.println("Before" + joinPoint.toShortString());
+        System.out.println("\n Aspectj Aspect Before " + joinPoint.toShortString() + "\n");
         return joinPoint.proceed();
     }
 

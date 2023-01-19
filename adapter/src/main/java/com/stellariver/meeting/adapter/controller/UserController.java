@@ -16,7 +16,7 @@ public class UserController {
     final UserAbility userAbility;
 
     public Result<Void> register(String name) {
-        userAbility.registerUser();
+        userAbility.invoke();
         return Result.success();
     }
 

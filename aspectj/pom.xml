@@ -34,6 +34,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>aspectj-maven-plugin</artifactId>
+                <version>1.14.0</version>
                 <configuration>
                     <complianceLevel>1.8</complianceLevel>
                     <source>1.8</source>
@@ -41,14 +42,6 @@
                     <showWeaveInfo>true</showWeaveInfo>
                     <Xlint>warning</Xlint>
                     <verbose>false</verbose>
-                    <sources>
-                        <source>
-                            <basedir>src/main/java</basedir>
-                            <includes>
-                                <include>**/*.java</include>
-                            </includes>
-                        </source>
-                    </sources>
                     <XaddSerialVersionUID>true</XaddSerialVersionUID>
                     <showWeaveInfo>true</showWeaveInfo>
                     <weaveDependencies>

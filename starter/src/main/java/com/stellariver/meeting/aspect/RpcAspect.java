@@ -1,4 +1,4 @@
-package com.stellariver.meeting.adapter;
+package com.stellariver.meeting.aspect;
 
 import com.stellariver.milky.common.base.ErrorEnum;
 import com.stellariver.milky.common.base.PageResult;
@@ -13,7 +13,6 @@ import com.stellariver.milky.common.tool.validate.ValidConfig;
 import com.stellariver.milky.common.tool.validate.ValidateUtil;
 import com.stellariver.milky.domain.support.ErrorEnums;
 import lombok.CustomLog;
-import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -30,7 +29,7 @@ import java.util.stream.IntStream;
 /**
  * @author houchuang
  */
-@Aspect
+//@Aspect
 //@Component
 @CustomLog
 public class RpcAspect {
@@ -41,15 +40,14 @@ public class RpcAspect {
     @Pointcut("execution(public com.stellariver.milky.common.base.Result com.stellariver.meeting.adapter.controller..*(..))")
     private void pageResultPointCut() {}
 
-    final MilkyStableSupport milkyStableSupport = null;
+    final MilkyStableSupport milkyStableSupport;
 
-//    public RpcAspect(@Autowired(required = false) MilkyStableSupport milkyStableSupport) {
-//        this.milkyStableSupport = milkyStableSupport;
-//    }
+    public RpcAspect(@Autowired(required = false) MilkyStableSupport milkyStableSupport) {
+        this.milkyStableSupport = milkyStableSupport;
+    }
 
     @Around("resultPointCut() || pageResultPointCut()")
     public Object resultResponseHandler(ProceedingJoinPoint pjp) {
-        System.out.println("\n resultResponseHandler \n");
         if (milkyStableSupport != null) {
             String key = milkyStableSupport.ruleId(pjp);
             RateLimiterWrapper rateLimiterWrapper = milkyStableSupport.rateLimiter(key);
