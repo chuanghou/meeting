@@ -2,7 +2,7 @@ package com.stellariver.meeting.adapter.controller;
 
 import com.stellariver.meeting.application.UserAbility;
 import com.stellariver.milky.common.base.Result;
-import com.stellariver.milky.validate.tool.ValidConfig;
+import com.stellariver.milky.validate.tool.Validate;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -20,7 +20,7 @@ public class UserController {
 
     final UserAbility userAbility;
 
-    @ValidConfig
+    @Validate
     @GetMapping("testOut")
     public Result<Void> registerOutParameterWrong(@NotNull @Min(5) String name) {
         userAbility.invoke();
@@ -28,7 +28,7 @@ public class UserController {
     }
 
 
-    @ValidConfig
+    @Validate
     @GetMapping("testInternal")
     public Result<Void> registerInternalParameterWrong() {
         userAbility.invoke();

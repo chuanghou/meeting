@@ -1,8 +1,9 @@
 package com.stellariver.meeting.application;
 
 
-import com.stellariver.milky.validate.tool.ValidConfig;
+import com.stellariver.milky.validate.tool.Validate;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotNull;
 
@@ -14,7 +15,7 @@ public class UserAbility {
     }
 
 
-    @ValidConfig
+    @Validate
     public void internalInvoke(@NotNull String name) {
         System.out.printf("\nregister name: %s \n", "jack");
         System.out.println("");

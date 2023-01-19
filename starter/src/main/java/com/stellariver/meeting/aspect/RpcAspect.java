@@ -1,15 +1,17 @@
 package com.stellariver.meeting.aspect;
 
 import com.stellariver.milky.common.base.ErrorEnum;
+import com.stellariver.milky.common.base.ExceptionType;
 import com.stellariver.milky.common.base.PageResult;
 import com.stellariver.milky.common.base.Result;
 import com.stellariver.milky.common.tool.common.Clock;
 import com.stellariver.milky.common.tool.exception.BaseException;
+import com.stellariver.milky.common.tool.exception.BizException;
 import com.stellariver.milky.common.tool.stable.MilkyStableSupport;
 import com.stellariver.milky.common.tool.stable.RateLimiterWrapper;
 import com.stellariver.milky.common.tool.util.Collect;
 import com.stellariver.milky.domain.support.ErrorEnums;
-import com.stellariver.milky.validate.tool.ValidConfig;
+import com.stellariver.milky.validate.tool.Validate;
 import com.stellariver.milky.validate.tool.ValidateUtil;
 import lombok.CustomLog;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -63,7 +65,7 @@ public class RpcAspect {
         List<ErrorEnum> errorEnums = Collections.emptyList();
         Throwable t = null;
         try {
-            ValidConfig annotation = method.getAnnotation(ValidConfig.class);
+            Validate annotation = method.getAnnotation(Validate.class);
             if (annotation == null) {
                 ValidateUtil.bizValidate(pjp.getTarget(), method, args, true);
             }
@@ -77,10 +79,11 @@ public class RpcAspect {
             }
             t = throwable;
         } finally {
+            ExceptionType exceptionType = t instanceof BizException ? ExceptionType.BIZ : ExceptionType.SYS;
             if (t != null && returnType == Result.class) {
-                result = Result.error(errorEnums);
+                result = Result.error(errorEnums, exceptionType);
             } else if (t != null && returnType == PageResult.class) {
-                result = PageResult.pageError(errorEnums);
+                result = PageResult.pageError(errorEnums, exceptionType);
             }
             IntStream.range(0, args.length).forEach(i -> log.with("arg" + i, args[i]));
             String logTag = ((MethodSignature) pjp.getSignature()).getMethod().getName();
