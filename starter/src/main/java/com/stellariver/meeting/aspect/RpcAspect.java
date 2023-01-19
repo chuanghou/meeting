@@ -4,14 +4,13 @@ import com.stellariver.milky.common.base.ErrorEnum;
 import com.stellariver.milky.common.base.PageResult;
 import com.stellariver.milky.common.base.Result;
 import com.stellariver.milky.common.tool.common.Clock;
-import com.stellariver.milky.common.tool.common.Kit;
 import com.stellariver.milky.common.tool.exception.BaseException;
 import com.stellariver.milky.common.tool.stable.MilkyStableSupport;
 import com.stellariver.milky.common.tool.stable.RateLimiterWrapper;
 import com.stellariver.milky.common.tool.util.Collect;
-import com.stellariver.milky.common.tool.validate.ValidConfig;
-import com.stellariver.milky.common.tool.validate.ValidateUtil;
 import com.stellariver.milky.domain.support.ErrorEnums;
+import com.stellariver.milky.validate.tool.ValidConfig;
+import com.stellariver.milky.validate.tool.ValidateUtil;
 import lombok.CustomLog;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -29,8 +28,8 @@ import java.util.stream.IntStream;
 /**
  * @author houchuang
  */
-//@Aspect
-//@Component
+@Aspect
+@Component
 @CustomLog
 public class RpcAspect {
 
@@ -65,9 +64,9 @@ public class RpcAspect {
         Throwable t = null;
         try {
             ValidConfig annotation = method.getAnnotation(ValidConfig.class);
-            Class<?>[] groups = Kit.op(annotation).map(ValidConfig::groups).orElse(new Class<?>[0]);
-            boolean failFast = Kit.op(annotation).map(ValidConfig::failFast).orElse(true);
-            ValidateUtil.bizValidate(pjp.getTarget(), method, args, failFast, groups);
+            if (annotation == null) {
+                ValidateUtil.bizValidate(pjp.getTarget(), method, args, true);
+            }
             result = pjp.proceed();
         } catch (Throwable throwable) {
             if (throwable instanceof BaseException) {

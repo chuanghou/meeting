@@ -27,6 +27,10 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.stellariver.milky</groupId>
+            <artifactId>validate-tool</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -42,8 +46,12 @@
                     <showWeaveInfo>true</showWeaveInfo>
                     <Xlint>warning</Xlint>
                     <verbose>false</verbose>
-                    <XaddSerialVersionUID>true</XaddSerialVersionUID>
-                    <showWeaveInfo>true</showWeaveInfo>
+                    <aspectLibraries>
+                        <aspectLibrary>
+                            <groupId>com.stellariver.milky</groupId>
+                            <artifactId>validate-tool</artifactId>
+                        </aspectLibrary>
+                    </aspectLibraries>
                     <weaveDependencies>
                         <dependency>
                             <groupId>com.stellariver.meeting</groupId>
