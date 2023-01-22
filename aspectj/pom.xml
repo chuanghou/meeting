@@ -23,14 +23,6 @@
             <groupId>com.stellariver.meeting</groupId>
             <artifactId>adapter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.stellariver.milky</groupId>
-            <artifactId>validate-tool</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
@@ -47,6 +39,10 @@
                     <Xlint>warning</Xlint>
                     <verbose>false</verbose>
                     <aspectLibraries>
+                        <aspectLibrary>
+                            <groupId>com.stellariver.meeting</groupId>
+                            <artifactId>basic</artifactId>
+                        </aspectLibrary>
                         <aspectLibrary>
                             <groupId>com.stellariver.milky</groupId>
                             <artifactId>validate-tool</artifactId>

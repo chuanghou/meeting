@@ -16,7 +16,7 @@ public class UserAbility {
 
 
     @Validate
-    public void internalInvoke(@NotNull String name) {
+    public void internalInvoke(String name) {
         System.out.printf("\nregister name: %s \n", "jack");
         System.out.println("");
     }

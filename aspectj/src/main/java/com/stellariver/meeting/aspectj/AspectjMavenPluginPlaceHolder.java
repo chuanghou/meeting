@@ -8,5 +8,5 @@ import com.stellariver.milky.validate.tool.ValidateAspect;
  * </p>
  */
 
-public class ValidateAspectCompileHolder {
+public class AspectjMavenPluginPlaceHolder {
 }
